@@ -1,0 +1,65 @@
+/* Grupos.css */
+.grupos-container {
+    padding: 30px;
+    font-family: "Arial", sans-serif;
+  }
+  
+  .grupos-title {
+    font-size: 22px;
+    color: #166534;
+    margin-bottom: 20px;
+  }
+  
+  .grupos-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .grupo-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .grupo-icon {
+    margin-right: 10px;
+    color: #f59e0b;
+    font-size: 18px;
+  }
+  
+  .empty {
+    color: #777;
+    font-style: italic;
+  }
+  
+  .error {
+    color: #dc2626;
+    font-weight: bold;
+  }
+  
+  .loading {
+    color: #2563eb;
+    font-size: 18px;
+  }
+
+  .grupo-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1f2937;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .grupo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
