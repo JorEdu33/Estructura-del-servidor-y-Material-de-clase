@@ -1,0 +1,267 @@
+tags:
+  - name: Práctica 3
+    description: Intervalos de confianza, predicción y tolerancia
+
+paths:
+  /api/pract/ejer1-prac3-C1:
+    post:
+      tags:
+        - Práctica 3
+      summary: Evaluar Ejercicio 1 - C1 (Intervalos de Confianza)
+      description: |
+        Evalúa el ejercicio de cálculo de intervalos de confianza para la media,
+        intervalos unilaterales y de predicción.
+        
+        **Parámetros evaluados (7):**
+        - IC 95% bilateral para la media (límites inferior y superior)
+        - IC 99% unilateral inferior para la media
+        - Margen de error 95% (inferior y superior)
+        - Intervalo de predicción 95% (límites inferior y superior)
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.01 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio1C1Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac3Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 7
+                    fallos: []
+                    esperado:
+                      ci_mean_95_low: 496.6198
+                      ci_mean_95_high: 499.7802
+                      ci_unilateral_99_low: 496.3019
+                      edge_95_low: 13.8444
+                      edge_95_high: 36.3239
+                      pred_95_low: 488.7191
+                      pred_95_high: 507.6809
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.5"
+                    aciertos: 5
+                    fallos: ["ci_mean_95_high", "edge_95_low"]
+                    esperado:
+                      ci_mean_95_low: 496.6198
+                      ci_mean_95_high: 499.7802
+                      ci_unilateral_99_low: 496.3019
+                      edge_95_low: 13.8444
+                      edge_95_high: 36.3239
+                      pred_95_low: 488.7191
+                      pred_95_high: 507.6809
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer2-prac3-C1:
+    post:
+      tags:
+        - Práctica 3
+      summary: Evaluar Ejercicio 2 - C1 (Intervalos de Confianza y Tolerancia)
+      description: |
+        Evalúa el ejercicio de cálculo de intervalos de confianza para la media
+        e intervalos de tolerancia.
+        
+        **Parámetros evaluados (7):**
+        - IC 95% bilateral para la media
+        - IC 99% unilateral inferior para la media
+        - Margen de error 95%
+        - Intervalo de tolerancia 95/95
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.01 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio2C1Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac3Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 7
+                    fallos: []
+                    esperado:
+                      ci_mean_95_low: 417.8838
+                      ci_mean_95_high: 420.5162
+                      ci_mean_99_low: 417.6107
+                      ci_edge_95_low: 6.1985
+                      ci_edge_95_high: 19.6756
+                      tol_95_95_low: 410.8110
+                      tol_95_95_high: 427.5890
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 2.8"
+                    aciertos: 4
+                    fallos: ["ci_mean_99_low", "ci_edge_95_low", "tol_95_95_high"]
+                    esperado:
+                      ci_mean_95_low: 417.8838
+                      ci_mean_95_high: 420.5162
+                      ci_mean_99_low: 417.6107
+                      ci_edge_95_low: 6.1985
+                      ci_edge_95_high: 19.6756
+                      tol_95_95_low: 410.8110
+                      tol_95_95_high: 427.5890
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer1-prac3-F3:
+    post:
+      tags:
+        - Práctica 3
+      summary: Evaluar Ejercicio 1 - F3 (Intervalos para Desviación Estándar)
+      description: |
+        Evalúa el ejercicio de cálculo de intervalos de confianza para la desviación
+        estándar usando diferentes métodos.
+        
+        **Parámetros evaluados (7):**
+        - IC 95% para sigma (distribución chi-cuadrado)
+        - Límite superior unilateral 99% para sigma
+        - IC 95% usando aproximación t
+        - Intervalo de tolerancia 95/90
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.01 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio1F3Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac3Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 7
+                    fallos: []
+                    esperado:
+                      IC95_low_sigma: 67.6738
+                      IC95_high_sigma: 74.3262
+                      LS99_sigma: 74.9479
+                      IC95_low_t: 67.5896
+                      IC95_high_t: 74.4104
+                      tol95_90_low: 47.0480
+                      tol95_90_high: 94.9520
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 4.2"
+                    aciertos: 6
+                    fallos: ["LS99_sigma"]
+                    esperado:
+                      IC95_low_sigma: 67.6738
+                      IC95_high_sigma: 74.3262
+                      LS99_sigma: 74.9479
+                      IC95_low_t: 67.5896
+                      IC95_high_t: 74.4104
+                      tol95_90_low: 47.0480
+                      tol95_90_high: 94.9520
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer2-prac3-F3:
+    post:
+      tags:
+        - Práctica 3
+      summary: Evaluar Ejercicio 2 - F3 (Múltiples Intervalos)
+      description: |
+        Evalúa el ejercicio de cálculo de múltiples intervalos estadísticos:
+        confianza, predicción y tolerancia.
+        
+        **Parámetros evaluados (13):**
+        - Valores críticos t (95% y 99%)
+        - IC 95% para la media
+        - Valores críticos chi-cuadrado
+        - Margen de error
+        - Intervalo de predicción 99%
+        - Intervalo de tolerancia
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.01 para todas las comparaciones
+        **Nota:** Calculada proporcionalmente (puntos/13 * 5)
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio2F3Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac3Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 13
+                    fallos: []
+                    esperado:
+                      t95: 2.0930
+                      ci_mean_low: 63.0300
+                      ci_mean_high: 65.7700
+                      chi2_low: 8.9065
+                      chi2_high: 32.8523
+                      edge_low: 4.9555
+                      edge_high: 18.2788
+                      t99: 2.8609
+                      pred_margin_99: 8.5813
+                      pred_low: 55.8187
+                      pred_high: 72.9813
+                      tol_low: 57.6382
+                      tol_high: 71.1618
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.8"
+                    aciertos: 10
+                    fallos: ["chi2_high", "edge_high", "tol_low"]
+                    esperado:
+                      t95: 2.0930
+                      ci_mean_low: 63.0300
+                      ci_mean_high: 65.7700
+                      chi2_low: 8.9065
+                      chi2_high: 32.8523
+                      edge_low: 4.9555
+                      edge_high: 18.2788
+                      t99: 2.8609
+                      pred_margin_99: 8.5813
+                      pred_low: 55.8187
+                      pred_high: 72.9813
+                      tol_low: 57.6382
+                      tol_high: 71.1618
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'

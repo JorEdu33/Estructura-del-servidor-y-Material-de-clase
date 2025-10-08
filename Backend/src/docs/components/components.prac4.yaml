@@ -1,0 +1,171 @@
+schemas:
+  BootstrapInput:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - Mediana
+      - Bias
+      - SE
+      - CI_lower
+      - CI_upper
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante para bootstrap
+        example: |
+          # Bootstrap para mediana - Ejercicio 1 C1
+          library(boot)
+          boot_median <- function(data, indices) {
+            return(median(data[indices]))
+          }
+          results <- boot(data, boot_median, R=1000)
+      Mediana:
+        type: number
+        format: float
+        description: Mediana estimada mediante bootstrap
+        example: 13.85
+      Bias:
+        type: number
+        format: float
+        description: Sesgo (bias) de la estimación bootstrap
+        example: 0.2473
+      SE:
+        type: number
+        format: float
+        description: Error estándar de la estimación bootstrap
+        example: 0.8155
+      CI_lower:
+        type: number
+        format: float
+        description: Límite inferior del intervalo de confianza bootstrap
+        example: 12.2516
+      CI_upper:
+        type: number
+        format: float
+        description: Límite superior del intervalo de confianza bootstrap
+        example: 15.4484
+
+  BootstrapResponse:
+    type: object
+    required:
+      - mensaje
+      - aciertos
+      - fallos
+      - esperado
+    properties:
+      mensaje:
+        type: string
+        description: Mensaje con la nota obtenida
+        example: "Nota: 5.0"
+      aciertos:
+        type: integer
+        description: Número de parámetros correctos (0-5)
+        example: 5
+      fallos:
+        type: array
+        items:
+          type: string
+        description: Lista de parámetros incorrectos
+        example: ["Bias", "SE"]
+      esperado:
+        type: object
+        description: Valores esperados para referencia
+        properties:
+          Mediana:
+            type: number
+            format: float
+          Bias:
+            type: number
+            format: float
+          SE:
+            type: number
+            format: float
+          CI_lower:
+            type: number
+            format: float
+          CI_upper:
+            type: number
+            format: float
+
+requestBodies:
+  Ejercicio1C1Body:
+    description: Datos para evaluar el Ejercicio 1 - C1 (Bootstrap para mediana)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BootstrapInput'
+        examples:
+          ejemploC1:
+            summary: Ejemplo para ejercicio 1 C1
+            value:
+              codigo_estudiante: "20251234"
+              codigo_funcion: "boot_median <- function(data, indices) { return(median(data[indices])) }"
+              Mediana: 13.85
+              Bias: 0.2473
+              SE: 0.8155
+              CI_lower: 12.2516
+              CI_upper: 15.4484
+
+  Ejercicio2C1Body:
+    description: Datos para evaluar el Ejercicio 2 - C1 (Bootstrap para mediana)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BootstrapInput'
+        examples:
+          ejemploC1:
+            summary: Ejemplo para ejercicio 2 C1
+            value:
+              codigo_estudiante: "20251234"
+              codigo_funcion: "boot_median <- function(data, indices) { return(median(data[indices])) }"
+              Mediana: 28.5
+              Bias: 0.8388
+              SE: 1.7777
+              CI_lower: 24.3661
+              CI_upper: 32.6339
+
+  Ejercicio1F3Body:
+    description: Datos para evaluar el Ejercicio 1 - F3 (Bootstrap para mediana)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BootstrapInput'
+        examples:
+          ejemploF3:
+            summary: Ejemplo para ejercicio 1 F3
+            value:
+              codigo_estudiante: "20251234"
+              codigo_funcion: "boot_median <- function(data, indices) { return(median(data[indices])) }"
+              Mediana: 1.71
+              Bias: -0.0011
+              SE: 0.0307
+              CI_lower: 1.6595
+              CI_upper: 1.7605
+
+  Ejercicio2F3Body:
+    description: Datos para evaluar el Ejercicio 2 - F3 (Bootstrap para mediana)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BootstrapInput'
+        examples:
+          ejemploF3:
+            summary: Ejemplo para ejercicio 2 F3
+            value:
+              codigo_estudiante: "20251234"
+              codigo_funcion: "boot_median <- function(data, indices) { return(median(data[indices])) }"
+              Mediana: 318.22
+              Bias: 1.833
+              SE: 20.9402
+              CI_lower: 269.5058
+              CI_upper: 366.9342

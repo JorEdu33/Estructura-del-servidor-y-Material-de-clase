@@ -14,7 +14,7 @@ exports.evaluarEstadisticos = async (req, res, next) => {
   
         const [intentos] = await pool.execute(
             "SELECT COUNT(*) AS num_intentos FROM ejercicios WHERE codigo_estudiante = ? AND nombre_ejercicio = ?",
-            [codigo_estudiante, "Estadísticos lluvia en nubes"]
+            [codigo_estudiante, "Ejercicio 1 - Práctica 1"]
         );
         if (intentos[0].num_intentos >= 2) {
             return res.status(403).json({ error: "Número máximo de intentos alcanzado" });
@@ -67,7 +67,7 @@ exports.evaluarEstadisticos = async (req, res, next) => {
   
         await pool.execute(
             "INSERT INTO ejercicios (codigo_estudiante, nombre_ejercicio, nota) VALUES (?, ?, ?)",
-            [codigo_estudiante, "Estadísticos lluvia en nubes", nota]
+            [codigo_estudiante, "Ejercicio 1 - Práctica 1", nota]
         );
   
         res.json({ 
@@ -96,7 +96,7 @@ exports.evaluarEstadisticos = async (req, res, next) => {
   
         const [intentos] = await pool.execute(
             "SELECT COUNT(*) AS num_intentos FROM ejercicios WHERE codigo_estudiante = ? AND nombre_ejercicio = ?",
-            [codigo_estudiante, "Histograma ciclos hasta fallo"]
+            [codigo_estudiante, "Ejercicio 2 - Práctica 1"]
         );
         if (intentos[0].num_intentos >= 2) {
             return res.status(403).json({ error: "Número máximo de intentos alcanzado" });
@@ -165,7 +165,7 @@ exports.evaluarEstadisticos = async (req, res, next) => {
   
         await pool.execute(
             "INSERT INTO ejercicios (codigo_estudiante, nombre_ejercicio, nota) VALUES (?, ?, ?)",
-            [codigo_estudiante, "Histograma ciclos hasta fallo", nota]
+            [codigo_estudiante, "Ejercicio 2 - Práctica 1", nota]
         );
   
         res.json({ mensaje: `Nota: ${nota}`, fallos });
@@ -178,7 +178,7 @@ exports.evaluarEstadisticos = async (req, res, next) => {
 
   exports.evaluarExpresion = async (req, res, next) => {
     try {
-        const { codigo_estudiante, stats, codigo_funcion } = req.body;
+        const { codigo_estudiante, stats } = req.body;
   
         const [estudiante] = await pool.execute(
             "SELECT * FROM estudiantes WHERE codigo_estudiante = ?",
@@ -190,7 +190,7 @@ exports.evaluarEstadisticos = async (req, res, next) => {
   
         const [intentos] = await pool.execute(
             "SELECT COUNT(*) AS num_intentos FROM ejercicios WHERE codigo_estudiante = ? AND nombre_ejercicio = ?",
-            [codigo_estudiante, "Expresion genetica por grupo"]
+            [codigo_estudiante, "Ejercicio 3 - Práctica 1"]
         );
         if (intentos[0].num_intentos >= 2) {
             return res.status(403).json({ error: "Número máximo de intentos alcanzado" });
@@ -244,8 +244,8 @@ exports.evaluarEstadisticos = async (req, res, next) => {
         else nota = 0.0;
   
         await pool.execute(
-            "INSERT INTO ejercicios (codigo_estudiante, nombre_ejercicio, nota, codigo) VALUES (?, ?, ?, ?)",
-            [codigo_estudiante, "Expresion genetica por grupo", nota, codigo_funcion]
+            "INSERT INTO ejercicios (codigo_estudiante, nombre_ejercicio, nota) VALUES (?, ?, ?)",
+            [codigo_estudiante, "Ejercicio 3 - Práctica 1", nota]
         );
   
         res.json({ mensaje: `Nota: ${nota}`, fallos });

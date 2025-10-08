@@ -1,0 +1,247 @@
+schemas:
+  EvaluarVarianzasInput:
+    type: object
+    required:
+      - codigo_estudiante
+      - F_calc
+      - F_crit_low
+      - F_crit_high
+      - resultado
+      - codigo_funcion
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      F_calc:
+        type: number
+        format: float
+        description: Valor F calculado para la prueba de varianzas
+        example: 1.2345
+      F_crit_low:
+        type: number
+        format: float
+        description: Valor crítico F inferior
+        example: 0.1040
+      F_crit_high:
+        type: number
+        format: float
+        description: Valor crítico F superior
+        example: 7.3878
+      resultado:
+        type: string
+        enum: ["Reject", "Fail to Reject"]
+        description: Decisión de la prueba de hipótesis
+        example: "Reject"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Prueba F para varianzas
+          var_test <- var.test(mina1, mina2)
+          F_calc <- var_test$statistic
+    example:
+      codigo_estudiante: "20251234"
+      F_calc: 1.2345
+      F_crit_low: 0.1040
+      F_crit_high: 7.3878
+      resultado: "Reject"
+      codigo_funcion: "var.test(mina1, mina2)"
+
+  EvaluarTUnaMuestraInput:
+    type: object
+    required:
+      - codigo_estudiante
+      - t_calc
+      - t_crit_low
+      - t_crit_high
+      - resultado
+      - codigo_funcion
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      t_calc:
+        type: number
+        format: float
+        description: Valor t calculado para prueba de una muestra
+        example: -2.0000
+      t_crit_low:
+        type: number
+        format: float
+        description: Valor crítico t inferior
+        example: -2.1314
+      t_crit_high:
+        type: number
+        format: float
+        description: Valor crítico t superior
+        example: 2.1314
+      resultado:
+        type: string
+        enum: ["Reject", "Fail to Reject"]
+        description: Decisión de la prueba de hipótesis
+        example: "Fail to Reject"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Prueba t una muestra
+          t_test <- t.test(muestra, mu = 30)
+          t_calc <- t_test$statistic
+    example:
+      codigo_estudiante: "20251234"
+      t_calc: -2.0000
+      t_crit_low: -2.1314
+      t_crit_high: 2.1314
+      resultado: "Fail to Reject"
+      codigo_funcion: "t.test(muestra, mu = 30)"
+
+  EvaluarTDosMuestrasInput:
+    type: object
+    required:
+      - codigo_estudiante
+      - t_calc
+      - t_crit_low
+      - t_crit_high
+      - resultado
+      - codigo_funcion
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      t_calc:
+        type: number
+        format: float
+        description: Valor t calculado para prueba de dos muestras
+        example: 2.9268
+      t_crit_low:
+        type: number
+        format: float
+        description: Valor crítico t inferior
+        example: -2.3060
+      t_crit_high:
+        type: number
+        format: float
+        description: Valor crítico t superior
+        example: 2.3060
+      resultado:
+        type: string
+        enum: ["Reject", "Fail to Reject"]
+        description: Decisión de la prueba de hipótesis
+        example: "Reject"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Prueba t dos muestras independientes
+          t_test <- t.test(grupo1, grupo2, var.equal = TRUE)
+          t_calc <- t_test$statistic
+    example:
+      codigo_estudiante: "20251234"
+      t_calc: 2.9268
+      t_crit_low: -2.3060
+      t_crit_high: 2.3060
+      resultado: "Reject"
+      codigo_funcion: "t.test(grupo1, grupo2, var.equal = TRUE)"
+
+  EvaluacionPrac2Response:
+    type: object
+    required:
+      - mensaje
+      - fallos
+      - esperado
+    properties:
+      mensaje:
+        type: string
+        description: Mensaje con la nota obtenida
+        example: "Nota: 5.0"
+      fallos:
+        type: array
+        items:
+          type: string
+        description: Lista de parámetros que no coincidieron con los valores esperados
+        example: ["t_calc", "resultado"]
+      esperado:
+        type: object
+        description: Valores esperados para referencia
+        properties:
+          t_calc:
+            type: number
+            format: float
+          t_crit_low:
+            type: number
+            format: float
+          t_crit_high:
+            type: number
+            format: float
+          resultado:
+            type: string
+
+requestBodies:
+  EvaluarVarianzasBody:
+    description: Datos para evaluar el ejercicio 1 - Prueba F de varianzas
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/EvaluarVarianzasInput'
+        examples:
+          ejemploVarianzas:
+            summary: Ejemplo de evaluación de prueba F
+            value:
+              codigo_estudiante: "20251234"
+              F_calc: 1.2345
+              F_crit_low: 0.1040
+              F_crit_high: 7.3878
+              resultado: "Reject"
+              codigo_funcion: "var.test(mina1, mina2)"
+
+  EvaluarTUnaMuestraBody:
+    description: Datos para evaluar el ejercicio 2 - Prueba t una muestra
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/EvaluarTUnaMuestraInput'
+        examples:
+          ejemploTUnaMuestra:
+            summary: Ejemplo de evaluación prueba t una muestra
+            value:
+              codigo_estudiante: "20251234"
+              t_calc: -2.0000
+              t_crit_low: -2.1314
+              t_crit_high: 2.1314
+              resultado: "Fail to Reject"
+              codigo_funcion: "t.test(muestra, mu = 30)"
+
+  EvaluarTDosMuestrasBody:
+    description: Datos para evaluar ejercicios 3 y 4 - Prueba t dos muestras
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/EvaluarTDosMuestrasInput'
+        examples:
+          ejemploEjercicio3:
+            summary: Ejemplo para ejercicio 3
+            value:
+              codigo_estudiante: "20251234"
+              t_calc: 2.9268
+              t_crit_low: -2.3060
+              t_crit_high: 2.3060
+              resultado: "Reject"
+              codigo_funcion: "t.test(grupo1, grupo2, var.equal = TRUE)"
+          ejemploEjercicio4:
+            summary: Ejemplo para ejercicio 4
+            value:
+              codigo_estudiante: "20251234"
+              t_calc: -0.3859
+              t_crit_low: -2.3646
+              t_crit_high: 2.3646
+              resultado: "Fail to Reject"
+              codigo_funcion: "t.test(antes, despues, paired = TRUE)"

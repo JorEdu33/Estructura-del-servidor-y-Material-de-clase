@@ -1,0 +1,192 @@
+schemas:
+  ResumenSemanal:
+    type: object
+    required:
+      - codigo_estudiante
+      - nombre_estudiante
+      - grupo
+      - ejercicio
+      - mejor_nota
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        example: "20251234"
+      nombre_estudiante:
+        type: string
+        description: Nombre completo del estudiante
+        example: "Jorge Suárez"
+      grupo:
+        type: string
+        description: Grupo al que pertenece el estudiante
+        example: "A1"
+      ejercicio:
+        type: string
+        description: Nombre del ejercicio evaluado
+        example: "Ejercicio 3 - Regresión Lineal"
+      mejor_nota:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 5
+        description: Mejor nota obtenida por el estudiante en este ejercicio durante la semana
+        example: 4.5
+
+  DetalleIntento:
+    type: object
+    required:
+      - id
+      - nombre_ejercicio
+      - nota
+      - codigo
+      - fecha
+      - hora
+    properties:
+      id:
+        type: integer
+        description: ID único del intento en la base de datos
+        example: 15
+      nombre_ejercicio:
+        type: string
+        description: Nombre del ejercicio realizado
+        example: "Ejercicio 3 - Regresión Lineal"
+      nota:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 5
+        description: Nota obtenida en este intento específico
+        example: 3.8
+      codigo:
+        type: string
+        description: |
+          **Solución enviada por el estudiante** - Código R/Python/estadístico 
+          que implementó como respuesta al ejercicio. Contiene la solución completa
+          enviada por el estudiante para ese intento.
+        example: |
+          # Solución de regresión lineal - Ejercicio 3
+          model <- lm(y ~ x1 + x2, data=dataset)
+          summary_model <- summary(model)
+          r_squared <- summary_model$r.squared
+          print(paste("R-cuadrado:", round(r_squared, 4)))
+      fecha:
+        type: string
+        format: date
+        description: Fecha en que se realizó el intento (YYYY-MM-DD)
+        example: "2025-09-28"
+      hora:
+        type: string
+        format: time
+        description: Hora exacta en que se realizó el intento (HH:MM:SS)
+        example: "10:35:42"
+
+  SuccessResponse:
+    type: object
+    required:
+      - success
+      - message
+    properties:
+      success:
+        type: boolean
+        description: Indica si la operación fue exitosa
+        example: true
+      message:
+        type: string
+        description: Mensaje descriptivo del resultado de la operación
+        example: "Intento eliminado correctamente"
+
+  ErrorResponse:
+    type: object
+    required:
+      - error
+    properties:
+      error:
+        type: string
+        description: Tipo de error ocurrido
+        example: "Recurso no encontrado"
+      details:
+        type: string
+        description: Detalles específicos del error
+        example: "No existe un intento con el ID proporcionado"
+      timestamp:
+        type: string
+        format: date-time
+        description: Fecha y hora en que ocurrió el error
+        example: "2024-01-15T10:30:00Z"
+
+responses:
+  NotFound:
+    description: Recurso no encontrado
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ErrorResponse'
+        examples:
+          intentoNoEncontrado:
+            summary: Intento no encontrado
+            value:
+              error: "Intento no encontrado"
+              details: "No existe un intento con el ID proporcionado"
+          estudianteNoEncontrado:
+            summary: Estudiante no encontrado
+            value:
+              error: "Estudiante no encontrado"
+              details: "No se encontraron intentos para el código de estudiante y semana especificados"
+
+  InternalServerError:
+    description: Error interno del servidor
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ErrorResponse'
+        examples:
+          errorGeneral:
+            summary: Error interno del servidor
+            value:
+              error: "Error interno del servidor"
+              details: "Ha ocurrido un error inesperado en el servidor"
+
+parameters:
+  GrupoParameter:
+    name: grupo
+    in: path
+    required: true
+    description: Código del grupo académico
+    schema:
+      type: string
+      example: "A1"
+    example: "A1"
+
+  SemanaParameter:
+    name: semana
+    in: path
+    required: true
+    description: Número de semana según estándar ISO 8601
+    schema:
+      type: integer
+      minimum: 1
+      maximum: 53
+      example: 36
+    example: 36
+
+  CodigoEstudianteParameter:
+    name: codigo_estudiante
+    in: path
+    required: true
+    description: Código identificador único del estudiante
+    schema:
+      type: string
+      pattern: '^[0-9]+$'
+      example: "20251234"
+    example: "20251234"
+
+  IdIntentoParameter:
+    name: id
+    in: path
+    required: true
+    description: ID único del intento en la base de datos
+    schema:
+      type: integer
+      minimum: 1
+      example: 15
+    example: 15

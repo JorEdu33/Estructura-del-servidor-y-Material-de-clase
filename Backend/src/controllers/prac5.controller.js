@@ -390,16 +390,17 @@ exports.ejer1_prac5_C1 = async (req, res, next) => {
   
       // 3. Valores esperados
       const esperado = {
-        a_d: 0.5,
-        a_estadistico_z: -3.0186917696247115,
+        a_d: 0.5000000000000004,
+        a_estadistico_z: -4.772970773009188,
         a_valor_critico: 1.959963984540054,
-        a_p_valor: 0.0025386867381504974,
+        a_p_valor: 1.8152814273975082e-06,
         a_decision: "Reject",
-        b_beta: 0.39122051535454255,
-        b_power: 0.6087794846454575,
-        c_diferencia_detectar: 0.2,
+        b_beta: 0.057562456812491294,
+        b_power: 0.9424375431875087,
+        c_diferencia_detectar: 0.20000000000000018,
         c_n_requerido: 32.0
       };
+      
   
       const tol = 0.01; // tolerancia para valores numéricos
       let puntos = 0;

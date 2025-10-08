@@ -1,0 +1,202 @@
+tags:
+  - name: Práctica 2
+    description: Pruebas de hipótesis - Pruebas F y t
+
+paths:
+  /api/pract/evaluar-varianzas:
+    post:
+      tags:
+        - Práctica 2
+      summary: Evaluar Ejercicio 1 - Prueba F de Varianzas
+      description: |
+        Evalúa el ejercicio de prueba F para comparar varianzas entre dos minas.
+        
+        **Datos:**
+        - Mina 1: [8260, 8130, 8350, 8070, 8340]
+        - Mina 2: [7950, 7890, 7900, 8140, 7920, 7840]
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.01 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/EvaluarVarianzasBody'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac2Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    fallos: []
+                    esperado:
+                      F_calc: 1.2345
+                      F_crit_low: 0.1040
+                      F_crit_high: 7.3878
+                      resultado: "Reject"
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.8"
+                    fallos: ["F_calc", "resultado"]
+                    esperado:
+                      F_calc: 1.2345
+                      F_crit_low: 0.1040
+                      F_crit_high: 7.3878
+                      resultado: "Reject"
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/evaluar-t-una-muestra:
+    post:
+      tags:
+        - Práctica 2
+      summary: Evaluar Ejercicio 2 - Prueba t Una Muestra
+      description: |
+        Evalúa el ejercicio de prueba t para una muestra con los siguientes parámetros:
+        
+        **Parámetros:**
+        - Media muestral (x̄) = 27.5
+        - Media poblacional (μ₀) = 30
+        - Desviación estándar (s) = 5
+        - Tamaño muestral (n) = 16
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.01 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/EvaluarTUnaMuestraBody'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac2Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    fallos: []
+                    esperado:
+                      t_calc: -2.0000
+                      t_crit_low: -2.1314
+                      t_crit_high: 2.1314
+                      resultado: "Fail to Reject"
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 2.5"
+                    fallos: ["t_calc", "t_crit_high", "resultado"]
+                    esperado:
+                      t_calc: -2.0000
+                      t_crit_low: -2.1314
+                      t_crit_high: 2.1314
+                      resultado: "Fail to Reject"
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer3_Prac2:
+    post:
+      tags:
+        - Práctica 2
+      summary: Evaluar Ejercicio 3 - Prueba t Dos Muestras (Independientes)
+      description: |
+        Evalúa el ejercicio de prueba t para dos muestras independientes.
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.04 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/EvaluarTDosMuestrasBody'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac2Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    fallos: []
+                    esperado:
+                      t_calc: 2.9268
+                      t_crit_low: -2.3060
+                      t_crit_high: 2.3060
+                      resultado: "Reject"
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.8"
+                    fallos: ["t_crit_low"]
+                    esperado:
+                      t_calc: 2.9268
+                      t_crit_low: -2.3060
+                      t_crit_high: 2.3060
+                      resultado: "Reject"
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer4_Prac2:
+    post:
+      tags:
+        - Práctica 2
+      summary: Evaluar Ejercicio 4 - Prueba t Dos Muestras (Pareadas)
+      description: |
+        Evalúa el ejercicio de prueba t para muestras pareadas.
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.02 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/EvaluarTDosMuestrasBody'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac2Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    fallos: []
+                    esperado:
+                      t_calc: -0.3859
+                      t_crit_low: -2.3646
+                      t_crit_high: 2.3646
+                      resultado: "Fail to Reject"
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 2.5"
+                    fallos: ["t_calc", "resultado"]
+                    esperado:
+                      t_calc: -0.3859
+                      t_crit_low: -2.3646
+                      t_crit_high: 2.3646
+                      resultado: "Fail to Reject"
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'

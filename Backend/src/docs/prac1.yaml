@@ -1,0 +1,114 @@
+paths:
+  /api/pract/evaluar-estadisticos:
+    post:
+      tags:
+        - Práctica 1
+      summary: Evaluar Ejercicio 1 - Estadísticos Básicos
+      description: |
+        Evalúa el ejercicio de cálculo de estadísticos básicos (media, desviación estándar y rango)
+        para tres conjuntos de datos: todas las observaciones, no sembradas y sembradas.
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.01 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/EvaluarEstadisticosBody'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionResponse'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    fallos: []
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.5"
+                    fallos: ["no_sembradas"]
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/evaluar-ciclos:
+    post:
+      tags:
+        - Práctica 1
+      summary: Evaluar Ejercicio 2 - Análisis de Ciclos
+      description: |
+        Evalúa el ejercicio de cálculo de estadísticos descriptivos para datos de ciclos,
+        incluyendo mediana, cuartiles y proporción de valores sobre 2000.
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.5 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/EvaluarCiclosBody'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionResponse'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    fallos: []
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 2.0"
+                    fallos: ["mediana", "cuartiles"]
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/evaluar-expresion:
+    post:
+      tags:
+        - Práctica 1
+      summary: Evaluar Ejercicio 3 - Expresión Génica
+      description: |
+        Evalúa el ejercicio de cálculo de estadísticos para datos de expresión génica
+        en cuatro grupos experimentales (Alta.Dosis, Control.1, Control.2, Control.3).
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.01 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/EvaluarExpresionBody'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionResponse'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    fallos: []
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.5"
+                    fallos: ["Control.2 -> varianza", "Control.3 -> rango"]
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'

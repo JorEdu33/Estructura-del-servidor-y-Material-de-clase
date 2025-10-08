@@ -1,0 +1,458 @@
+schemas:
+  Ejercicio1C1Input:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - a_d
+      - a_estadistico_z
+      - a_valor_critico
+      - a_p_valor
+      - a_decision
+      - b_beta
+      - b_power
+      - c_diferencia_detectar
+      - c_n_requerido
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Prueba Z y análisis de potencia - Ejercicio 1 C1
+          prop.test(x, n, p, alternative='two.sided')
+      a_d:
+        type: number
+        format: float
+        description: Diferencia estandarizada (effect size)
+        example: 0.5
+      a_estadistico_z:
+        type: number
+        format: float
+        description: Estadístico Z calculado
+        example: -0.9467
+      a_valor_critico:
+        type: number
+        format: float
+        description: Valor crítico Z para el nivel de significancia
+        example: 1.9599
+      a_p_valor:
+        type: number
+        format: float
+        description: Valor p de la prueba
+        example: 0.3437
+      a_decision:
+        type: string
+        enum: ["Reject", "Fail to Reject"]
+        description: Decisión de la prueba de hipótesis
+        example: "Fail to Reject"
+      b_beta:
+        type: number
+        format: float
+        description: Error tipo II (beta)
+        example: 0.5093
+      b_power:
+        type: number
+        format: float
+        description: Potencia de la prueba (1 - beta)
+        example: 0.4906
+      c_diferencia_detectar:
+        type: number
+        format: float
+        description: Diferencia mínima detectable
+        example: 0.75
+      c_n_requerido:
+        type: number
+        format: float
+        description: Tamaño muestral requerido
+        example: 16.0
+
+  Ejercicio2C1Input:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - a_d
+      - a_t0
+      - a_valor_critico_t
+      - a_decision
+      - b_p_valor
+      - c_beta
+      - c_power
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Prueba t y análisis de potencia - Ejercicio 2 C1
+          t.test(data, alternative='two.sided')
+      a_d:
+        type: number
+        format: float
+        description: Diferencia estandarizada (effect size)
+        example: 0.2016
+      a_t0:
+        type: number
+        format: float
+        description: Estadístico t calculado
+        example: 0.6464
+      a_valor_critico_t:
+        type: number
+        format: float
+        description: Valor crítico t para los grados de libertad
+        example: 2.4620
+      a_decision:
+        type: string
+        enum: ["Reject", "Fail to Reject"]
+        description: Decisión de la prueba de hipótesis
+        example: "Fail to Reject"
+      b_p_valor:
+        type: number
+        format: float
+        description: Valor p de la prueba t
+        example: 0.2615
+      c_beta:
+        type: number
+        format: float
+        description: Error tipo II (beta)
+        example: 0.9
+      c_power:
+        type: number
+        format: float
+        description: Potencia de la prueba (1 - beta)
+        example: 0.1
+
+  Ejercicio3C1Input:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - a_lambda
+      - a_chi2_0
+      - a_chi2_critico
+      - a_decision
+      - a_p_valor
+      - a_beta
+      - a_power
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Prueba chi-cuadrado y análisis de potencia - Ejercicio 3 C1
+          chisq.test(observed, expected)
+      a_lambda:
+        type: number
+        format: float
+        description: Parámetro de no centralidad
+        example: 0.8004
+      a_chi2_0:
+        type: number
+        format: float
+        description: Estadístico chi-cuadrado calculado
+        example: 18.5805
+      a_chi2_critico:
+        type: number
+        format: float
+        description: Valor crítico chi-cuadrado
+        example: 14.2564
+      a_decision:
+        type: string
+        enum: ["Reject", "Fail to Reject"]
+        description: Decisión de la prueba de hipótesis
+        example: "Fail to Reject"
+      a_p_valor:
+        type: number
+        format: float
+        description: Valor p de la prueba chi-cuadrado
+        example: 0.0684
+      a_beta:
+        type: number
+        format: float
+        description: Error tipo II (beta)
+        example: 0.8
+      a_power:
+        type: number
+        format: float
+        description: Potencia de la prueba (1 - beta)
+        example: 0.2
+
+  Ejercicio1F3Input:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - a_d
+      - a_estadistico_z
+      - a_valor_critico
+      - a_p_valor
+      - a_decision
+      - b_beta
+      - b_power
+      - c_diferencia_detectar
+      - c_n_requerido
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Prueba Z y análisis de potencia - Ejercicio 1 F3
+      a_d:
+        type: number
+        format: float
+        description: Diferencia estandarizada (effect size)
+        example: 0.5
+      a_estadistico_z:
+        type: number
+        format: float
+        description: Estadístico Z calculado
+        example: -4.7729
+      a_valor_critico:
+        type: number
+        format: float
+        description: Valor crítico Z
+        example: 1.9599
+      a_p_valor:
+        type: number
+        format: float
+        description: Valor p de la prueba
+        example: 1.8152e-06
+      a_decision:
+        type: string
+        enum: ["Reject", "Fail to Reject"]
+        description: Decisión de la prueba
+        example: "Reject"
+      b_beta:
+        type: number
+        format: float
+        description: Error tipo II (beta)
+        example: 0.0575
+      b_power:
+        type: number
+        format: float
+        description: Potencia de la prueba
+        example: 0.9424
+      c_diferencia_detectar:
+        type: number
+        format: float
+        description: Diferencia mínima detectable
+        example: 0.2
+      c_n_requerido:
+        type: number
+        format: float
+        description: Tamaño muestral requerido
+        example: 32.0
+
+  Ejercicio2F3Input:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - a_d
+      - a_t0
+      - a_valor_critico_t
+      - a_decision
+      - b_p_valor
+      - c_beta
+      - c_power
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Prueba t y análisis de potencia - Ejercicio 2 F3
+      a_d:
+        type: number
+        format: float
+        description: Diferencia estandarizada
+        example: 0.2010
+      a_t0:
+        type: number
+        format: float
+        description: Estadístico t calculado
+        example: -3.7923
+      a_valor_critico_t:
+        type: number
+        format: float
+        description: Valor crítico t
+        example: 2.4620
+      a_decision:
+        type: string
+        enum: ["Reject", "Fail to Reject"]
+        description: Decisión de la prueba
+        example: "Fail to Reject"
+      b_p_valor:
+        type: number
+        format: float
+        description: Valor p de la prueba
+        example: 0.9996
+      c_beta:
+        type: number
+        format: float
+        description: Error tipo II
+        example: 0.9
+      c_power:
+        type: number
+        format: float
+        description: Potencia de la prueba
+        example: 0.1
+
+  Ejercicio3F3Input:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - a_lambda
+      - a_chi2_0
+      - a_chi2_critico
+      - a_decision
+      - a_p_valor
+      - a_beta
+      - a_power
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Prueba chi-cuadrado y análisis de potencia - Ejercicio 3 F3
+      a_lambda:
+        type: number
+        format: float
+        description: Parámetro de no centralidad
+        example: 1.5007
+      a_chi2_0:
+        type: number
+        format: float
+        description: Estadístico chi-cuadrado
+        example: 20.2695
+      a_chi2_critico:
+        type: number
+        format: float
+        description: Valor crítico chi-cuadrado
+        example: 16.9189
+      a_decision:
+        type: string
+        enum: ["Reject", "Fail to Reject"]
+        description: Decisión de la prueba
+        example: "Reject"
+      a_p_valor:
+        type: number
+        format: float
+        description: Valor p de la prueba
+        example: 0.0163
+      a_beta:
+        type: number
+        format: float
+        description: Error tipo II
+        example: 0.4
+      a_power:
+        type: number
+        format: float
+        description: Potencia de la prueba
+        example: 0.6
+
+  EvaluacionPrac5Response:
+    type: object
+    required:
+      - mensaje
+      - aciertos
+      - fallos
+      - esperado
+    properties:
+      mensaje:
+        type: string
+        description: Mensaje con la nota obtenida
+        example: "Nota: 5.0"
+      aciertos:
+        type: integer
+        description: Número de parámetros correctos
+        example: 9
+      fallos:
+        type: array
+        items:
+          type: string
+        description: Lista de parámetros incorrectos
+        example: ["a_p_valor", "b_beta"]
+      esperado:
+        type: object
+        description: Valores esperados para referencia
+        additionalProperties:
+          type: number
+
+requestBodies:
+  Ejercicio1C1Body:
+    description: Datos para evaluar el Ejercicio 1 - C1 (Prueba Z y potencia)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Ejercicio1C1Input'
+
+  Ejercicio2C1Body:
+    description: Datos para evaluar el Ejercicio 2 - C1 (Prueba t y potencia)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Ejercicio2C1Input'
+
+  Ejercicio3C1Body:
+    description: Datos para evaluar el Ejercicio 3 - C1 (Prueba chi-cuadrado y potencia)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Ejercicio3C1Input'
+
+  Ejercicio1F3Body:
+    description: Datos para evaluar el Ejercicio 1 - F3 (Prueba Z y potencia)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Ejercicio1F3Input'
+
+  Ejercicio2F3Body:
+    description: Datos para evaluar el Ejercicio 2 - F3 (Prueba t y potencia)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Ejercicio2F3Input'
+
+  Ejercicio3F3Body:
+    description: Datos para evaluar el Ejercicio 3 - F3 (Prueba chi-cuadrado y potencia)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Ejercicio3F3Input'

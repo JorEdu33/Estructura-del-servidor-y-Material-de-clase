@@ -1,0 +1,340 @@
+tags:
+  - name: Práctica 5
+    description: Pruebas de hipótesis y análisis de potencia
+
+paths:
+  /api/pract/ejer1-prac5-C1:
+    post:
+      tags:
+        - Práctica 5
+      summary: Evaluar Ejercicio 1 - C1 (Prueba Z y Análisis de Potencia)
+      description: |
+        Evalúa el ejercicio de prueba Z para proporciones y análisis de potencia.
+        
+        **Parámetros evaluados (9):**
+        - Diferencia estandarizada (a_d)
+        - Estadístico Z (a_estadistico_z)
+        - Valor crítico (a_valor_critico)
+        - Valor p (a_p_valor)
+        - Decisión (a_decision)
+        - Error tipo II (b_beta)
+        - Potencia (b_power)
+        - Diferencia detectable (c_diferencia_detectar)
+        - Tamaño muestral requerido (c_n_requerido)
+        
+        **Límite de intentos:** 1 por estudiante
+        **Tolerancia:** 0.01 para valores numéricos
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio1C1Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac5Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 9
+                    fallos: []
+                    esperado:
+                      a_d: 0.5
+                      a_estadistico_z: -0.9467
+                      a_valor_critico: 1.9599
+                      a_p_valor: 0.3437
+                      a_decision: "Fail to Reject"
+                      b_beta: 0.5093
+                      b_power: 0.4906
+                      c_diferencia_detectar: 0.75
+                      c_n_requerido: 16.0
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.8"
+                    aciertos: 7
+                    fallos: ["a_p_valor", "b_beta"]
+                    esperado:
+                      a_d: 0.5
+                      a_estadistico_z: -0.9467
+                      a_valor_critico: 1.9599
+                      a_p_valor: 0.3437
+                      a_decision: "Fail to Reject"
+                      b_beta: 0.5093
+                      b_power: 0.4906
+                      c_diferencia_detectar: 0.75
+                      c_n_requerido: 16.0
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer2-prac5-C1:
+    post:
+      tags:
+        - Práctica 5
+      summary: Evaluar Ejercicio 2 - C1 (Prueba t y Análisis de Potencia)
+      description: |
+        Evalúa el ejercicio de prueba t para una muestra y análisis de potencia.
+        
+        **Parámetros evaluados (7):**
+        - Diferencia estandarizada (a_d)
+        - Estadístico t (a_t0)
+        - Valor crítico t (a_valor_critico_t)
+        - Decisión (a_decision)
+        - Valor p (b_p_valor)
+        - Error tipo II (c_beta)
+        - Potencia (c_power)
+        
+        **Límite de intentos:** 1 por estudiante
+        **Tolerancia:** 0.01 para valores numéricos
+        **Nota:** Calculada proporcionalmente (puntos/7 * 5)
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio2C1Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac5Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 7
+                    fallos: []
+                    esperado:
+                      a_d: 0.2016
+                      a_t0: 0.6464
+                      a_valor_critico_t: 2.4620
+                      a_decision: "Fail to Reject"
+                      b_p_valor: 0.2615
+                      c_beta: 0.9
+                      c_power: 0.1
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.5"
+                    aciertos: 5
+                    fallos: ["a_d", "b_p_valor"]
+                    esperado:
+                      a_d: 0.2016
+                      a_t0: 0.6464
+                      a_valor_critico_t: 2.4620
+                      a_decision: "Fail to Reject"
+                      b_p_valor: 0.2615
+                      c_beta: 0.9
+                      c_power: 0.1
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer3-prac5-C1:
+    post:
+      tags:
+        - Práctica 5
+      summary: Evaluar Ejercicio 3 - C1 (Prueba Chi-cuadrado y Potencia)
+      description: |
+        Evalúa el ejercicio de prueba chi-cuadrado y análisis de potencia.
+        
+        **Parámetros evaluados (7):**
+        - Parámetro de no centralidad (a_lambda)
+        - Estadístico chi-cuadrado (a_chi2_0)
+        - Valor crítico (a_chi2_critico)
+        - Decisión (a_decision)
+        - Valor p (a_p_valor)
+        - Error tipo II (a_beta)
+        - Potencia (a_power)
+        
+        **Límite de intentos:** 1 por estudiante
+        **Tolerancia:** 0.01 para valores numéricos
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio3C1Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac5Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 7
+                    fallos: []
+                    esperado:
+                      a_lambda: 0.8004
+                      a_chi2_0: 18.5805
+                      a_chi2_critico: 14.2564
+                      a_decision: "Fail to Reject"
+                      a_p_valor: 0.0684
+                      a_beta: 0.8
+                      a_power: 0.2
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.5"
+                    aciertos: 5
+                    fallos: ["a_chi2_critico", "a_p_valor"]
+                    esperado:
+                      a_lambda: 0.8004
+                      a_chi2_0: 18.5805
+                      a_chi2_critico: 14.2564
+                      a_decision: "Fail to Reject"
+                      a_p_valor: 0.0684
+                      a_beta: 0.8
+                      a_power: 0.2
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer1-prac5-F3:
+    post:
+      tags:
+        - Práctica 5
+      summary: Evaluar Ejercicio 1 - F3 (Prueba Z y Potencia)
+      description: |
+        Evalúa el ejercicio de prueba Z para proporciones y análisis de potencia.
+        
+        **Parámetros evaluados (9):**
+        - Diferencia estandarizada, estadístico Z, valor crítico, valor p, decisión,
+          error tipo II, potencia, diferencia detectable, tamaño muestral
+        
+        **Límite de intentos:** 1 por estudiante
+        **Tolerancia:** 0.01 para valores numéricos
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio1F3Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac5Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 9
+                    fallos: []
+                    esperado:
+                      a_d: 0.5
+                      a_estadistico_z: -4.7729
+                      a_valor_critico: 1.9599
+                      a_p_valor: 1.8152e-06
+                      a_decision: "Reject"
+                      b_beta: 0.0575
+                      b_power: 0.9424
+                      c_diferencia_detectar: 0.2
+                      c_n_requerido: 32.0
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer2-prac5-F3:
+    post:
+      tags:
+        - Práctica 5
+      summary: Evaluar Ejercicio 2 - F3 (Prueba t y Potencia)
+      description: |
+        Evalúa el ejercicio de prueba t para una muestra y análisis de potencia.
+        
+        **Parámetros evaluados (7):**
+        - Diferencia estandarizada, estadístico t, valor crítico, decisión,
+          valor p, error tipo II, potencia
+        
+        **Límite de intentos:** 1 por estudiante
+        **Tolerancia:** 0.01 para valores numéricos
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio2F3Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac5Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 7
+                    fallos: []
+                    esperado:
+                      a_d: 0.2010
+                      a_t0: -3.7923
+                      a_valor_critico_t: 2.4620
+                      a_decision: "Fail to Reject"
+                      b_p_valor: 0.9996
+                      c_beta: 0.9
+                      c_power: 0.1
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer3-prac5-F3:
+    post:
+      tags:
+        - Práctica 5
+      summary: Evaluar Ejercicio 3 - F3 (Prueba Chi-cuadrado y Potencia)
+      description: |
+        Evalúa el ejercicio de prueba chi-cuadrado y análisis de potencia.
+        
+        **Parámetros evaluados (7):**
+        - Parámetro de no centralidad, estadístico chi-cuadrado, valor crítico,
+          decisión, valor p, error tipo II, potencia
+        
+        **Límite de intentos:** 1 por estudiante
+        **Tolerancia:** 0.001 para valores numéricos
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio3F3Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluacionPrac5Response'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 7
+                    fallos: []
+                    esperado:
+                      a_lambda: 1.5007
+                      a_chi2_0: 20.2695
+                      a_chi2_critico: 16.9189
+                      a_decision: "Reject"
+                      a_p_valor: 0.0163
+                      a_beta: 0.4
+                      a_power: 0.6
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'

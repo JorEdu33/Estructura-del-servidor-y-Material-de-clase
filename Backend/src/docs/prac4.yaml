@@ -1,0 +1,264 @@
+tags:
+  - name: Práctica 4
+    description: Métodos de bootstrap para estimación de medianas
+
+paths:
+  /api/pract/ejer1-prac4-C1:
+    post:
+      tags:
+        - Práctica 4
+      summary: Evaluar Ejercicio 1 - C1 (Bootstrap para Mediana)
+      description: |
+        Evalúa el ejercicio de bootstrap para estimar la mediana y su intervalo de confianza.
+        
+        **Parámetros evaluados (5):**
+        - Mediana estimada
+        - Bias (sesgo)
+        - SE (error estándar)
+        - Límite inferior del IC
+        - Límite superior del IC
+        
+        **Valores esperados:**
+        - Mediana: 13.85
+        - Bias: 0.2473
+        - SE: 0.8155
+        - CI_lower: 12.2516
+        - CI_upper: 15.4484
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.01 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio1C1Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapResponse'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 5
+                    fallos: []
+                    esperado:
+                      Mediana: 13.85
+                      Bias: 0.2473
+                      SE: 0.8155
+                      CI_lower: 12.2516
+                      CI_upper: 15.4484
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.0"
+                    aciertos: 3
+                    fallos: ["Bias", "SE"]
+                    esperado:
+                      Mediana: 13.85
+                      Bias: 0.2473
+                      SE: 0.8155
+                      CI_lower: 12.2516
+                      CI_upper: 15.4484
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer2-prac4-C1:
+    post:
+      tags:
+        - Práctica 4
+      summary: Evaluar Ejercicio 2 - C1 (Bootstrap para Mediana)
+      description: |
+        Evalúa el ejercicio de bootstrap para estimar la mediana y su intervalo de confianza.
+        
+        **Parámetros evaluados (5):**
+        - Mediana estimada
+        - Bias (sesgo)
+        - SE (error estándar)
+        - Límite inferior del IC
+        - Límite superior del IC
+        
+        **Valores esperados:**
+        - Mediana: 28.5
+        - Bias: 0.8388
+        - SE: 1.7777
+        - CI_lower: 24.3661
+        - CI_upper: 32.6339
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.001 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio2C1Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapResponse'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 5
+                    fallos: []
+                    esperado:
+                      Mediana: 28.5
+                      Bias: 0.8388
+                      SE: 1.7777
+                      CI_lower: 24.3661
+                      CI_upper: 32.6339
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 2.0"
+                    aciertos: 2
+                    fallos: ["Mediana", "Bias", "SE"]
+                    esperado:
+                      Mediana: 28.5
+                      Bias: 0.8388
+                      SE: 1.7777
+                      CI_lower: 24.3661
+                      CI_upper: 32.6339
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer1-prac4-F3:
+    post:
+      tags:
+        - Práctica 4
+      summary: Evaluar Ejercicio 1 - F3 (Bootstrap para Mediana)
+      description: |
+        Evalúa el ejercicio de bootstrap para estimar la mediana y su intervalo de confianza.
+        
+        **Parámetros evaluados (5):**
+        - Mediana estimada
+        - Bias (sesgo)
+        - SE (error estándar)
+        - Límite inferior del IC
+        - Límite superior del IC
+        
+        **Valores esperados:**
+        - Mediana: 1.71
+        - Bias: -0.0011
+        - SE: 0.0307
+        - CI_lower: 1.6595
+        - CI_upper: 1.7605
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.001 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio1F3Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapResponse'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 5
+                    fallos: []
+                    esperado:
+                      Mediana: 1.71
+                      Bias: -0.0011
+                      SE: 0.0307
+                      CI_lower: 1.6595
+                      CI_upper: 1.7605
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 4.0"
+                    aciertos: 4
+                    fallos: ["Bias"]
+                    esperado:
+                      Mediana: 1.71
+                      Bias: -0.0011
+                      SE: 0.0307
+                      CI_lower: 1.6595
+                      CI_upper: 1.7605
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/pract/ejer2-prac4-F3:
+    post:
+      tags:
+        - Práctica 4
+      summary: Evaluar Ejercicio 2 - F3 (Bootstrap para Mediana)
+      description: |
+        Evalúa el ejercicio de bootstrap para estimar la mediana y su intervalo de confianza.
+        
+        **Parámetros evaluados (5):**
+        - Mediana estimada
+        - Bias (sesgo)
+        - SE (error estándar)
+        - Límite inferior del IC
+        - Límite superior del IC
+        
+        **Valores esperados:**
+        - Mediana: 318.22
+        - Bias: 1.833
+        - SE: 20.9402
+        - CI_lower: 269.5058
+        - CI_upper: 366.9342
+        
+        **Límite de intentos:** 2 por estudiante
+        **Tolerancia:** 0.001 para todas las comparaciones
+      requestBody:
+        $ref: '#/components/requestBodies/Ejercicio2F3Body'
+      responses:
+        '200':
+          description: Evaluación completada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapResponse'
+              examples:
+                exito:
+                  summary: Evaluación exitosa
+                  value:
+                    mensaje: "Nota: 5.0"
+                    aciertos: 5
+                    fallos: []
+                    esperado:
+                      Mediana: 318.22
+                      Bias: 1.833
+                      SE: 20.9402
+                      CI_lower: 269.5058
+                      CI_upper: 366.9342
+                conFallos:
+                  summary: Evaluación con algunos errores
+                  value:
+                    mensaje: "Nota: 3.0"
+                    aciertos: 3
+                    fallos: ["SE", "CI_upper"]
+                    esperado:
+                      Mediana: 318.22
+                      Bias: 1.833
+                      SE: 20.9402
+                      CI_lower: 269.5058
+                      CI_upper: 366.9342
+        '403':
+          $ref: '#/components/responses/MaxAttemptsReached'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'

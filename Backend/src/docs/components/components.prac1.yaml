@@ -1,0 +1,393 @@
+schemas:
+  EvaluarEstadisticosInput:
+    type: object
+    required:
+      - codigo_estudiante
+      - todas
+      - no_sembradas
+      - sembradas
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      todas:
+        type: object
+        required:
+          - media
+          - desviacion_estandar
+          - rango
+        properties:
+          media:
+            type: number
+            format: float
+            description: Media calculada para todas las observaciones
+            example: 245.8
+          desviacion_estandar:
+            type: number
+            format: float
+            description: Desviación estándar calculada para todas las observaciones
+            example: 412.3
+          rango:
+            type: number
+            format: float
+            description: Rango calculado para todas las observaciones
+            example: 2744.6
+      no_sembradas:
+        type: object
+        required:
+          - media
+          - desviacion_estandar
+          - rango
+        properties:
+          media:
+            type: number
+            format: float
+            description: Media calculada para observaciones no sembradas
+            example: 180.5
+          desviacion_estandar:
+            type: number
+            format: float
+            description: Desviación estándar calculada para observaciones no sembradas
+            example: 285.2
+          rango:
+            type: number
+            format: float
+            description: Rango calculado para observaciones no sembradas
+            example: 1201.6
+      sembradas:
+        type: object
+        required:
+          - media
+          - desviacion_estandar
+          - rango
+        properties:
+          media:
+            type: number
+            format: float
+            description: Media calculada para observaciones sembradas
+            example: 311.1
+          desviacion_estandar:
+            type: number
+            format: float
+            description: Desviación estándar calculada para observaciones sembradas
+            example: 537.4
+          rango:
+            type: number
+            format: float
+            description: Rango calculado para observaciones sembradas
+            example: 2738.1
+    example:
+      codigo_estudiante: "20251234"
+      todas:
+        media: 245.8
+        desviacion_estandar: 412.3
+        rango: 2744.6
+      no_sembradas:
+        media: 180.5
+        desviacion_estandar: 285.2
+        rango: 1201.6
+      sembradas:
+        media: 311.1
+        desviacion_estandar: 537.4
+        rango: 2738.1
+
+  EvaluarCiclosInput:
+    type: object
+    required:
+      - codigo_estudiante
+      - mediana
+      - cuartiles
+      - proporcion_sobre_2000
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      mediana:
+        type: number
+        format: float
+        description: Mediana calculada para los datos de ciclos
+        example: 1312.5
+      cuartiles:
+        type: object
+        required:
+          - Q1
+          - Q2
+          - Q3
+        properties:
+          Q1:
+            type: number
+            format: float
+            description: Primer cuartil (Q1)
+            example: 1087.2
+          Q2:
+            type: number
+            format: float
+            description: Segundo cuartil (Q2) - mediana
+            example: 1312.5
+          Q3:
+            type: number
+            format: float
+            description: Tercer cuartil (Q3)
+            example: 1578.8
+      proporcion_sobre_2000:
+        type: number
+        format: float
+        description: Proporción de valores sobre 2000 en porcentaje
+        example: 8.7
+    example:
+      codigo_estudiante: "20251234"
+      mediana: 1312.5
+      cuartiles:
+        Q1: 1087.2
+        Q2: 1312.5
+        Q3: 1578.8
+      proporcion_sobre_2000: 8.7
+
+  EvaluarExpresionInput:
+    type: object
+    required:
+      - codigo_estudiante
+      - stats
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      stats:
+        type: object
+        description: Estadísticas para cada grupo experimental
+        properties:
+          Alta.Dosis:
+            type: object
+            required:
+              - desviacion_estandar
+              - varianza
+              - rango
+            properties:
+              desviacion_estandar:
+                type: number
+                format: float
+                example: 39.8
+              varianza:
+                type: number
+                format: float
+                example: 1584.0
+              rango:
+                type: number
+                format: float
+                example: 122.0
+          Control.1:
+            type: object
+            required:
+              - desviacion_estandar
+              - varianza
+              - rango
+            properties:
+              desviacion_estandar:
+                type: number
+                format: float
+                example: 450.2
+              varianza:
+                type: number
+                format: float
+                example: 202680.0
+              rango:
+                type: number
+                format: float
+                example: 1467.0
+          Control.2:
+            type: object
+            required:
+              - desviacion_estandar
+              - varianza
+              - rango
+            properties:
+              desviacion_estandar:
+                type: number
+                format: float
+                example: 485.6
+              varianza:
+                type: number
+                format: float
+                example: 235808.0
+              rango:
+                type: number
+                format: float
+                example: 2029.9
+          Control.3:
+            type: object
+            required:
+              - desviacion_estandar
+              - varianza
+              - rango
+            properties:
+              desviacion_estandar:
+                type: number
+                format: float
+                example: 1012.4
+              varianza:
+                type: number
+                format: float
+                example: 1024954.0
+              rango:
+                type: number
+                format: float
+                example: 3010.2
+    example:
+      codigo_estudiante: "20251234"
+      stats:
+        Alta.Dosis:
+          desviacion_estandar: 39.8
+          varianza: 1584.0
+          rango: 122.0
+        Control.1:
+          desviacion_estandar: 450.2
+          varianza: 202680.0
+          rango: 1467.0
+        Control.2:
+          desviacion_estandar: 485.6
+          varianza: 235808.0
+          rango: 2029.9
+        Control.3:
+          desviacion_estandar: 1012.4
+          varianza: 1024954.0
+          rango: 3010.2
+
+  EvaluacionResponse:
+    type: object
+    required:
+      - mensaje
+    properties:
+      mensaje:
+        type: string
+        description: Mensaje con la nota obtenida
+        example: "Nota: 5.0"
+      fallos:
+        type: array
+        items:
+          type: string
+        description: Lista de estadísticas que no coincidieron con los valores esperados
+        example: ["no_sembradas", "sembradas"]
+
+  NotFound:
+    type: object
+    properties:
+      error:
+        type: string
+        example: "Estudiante no encontrado"
+
+  MaxAttemptsReached:
+    type: object
+    properties:
+      error:
+        type: string
+        example: "Número máximo de intentos alcanzado"
+
+  InternalServerError:
+    type: object
+    properties:
+      error:
+        type: string
+        example: "Error interno del servidor"
+
+requestBodies:
+  EvaluarEstadisticosBody:
+    description: Datos para evaluar el ejercicio 1 de estadísticos básicos
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/EvaluarEstadisticosInput'
+        examples:
+          ejemploEstadisticos:
+            summary: Ejemplo de evaluación de estadísticos
+            value:
+              codigo_estudiante: "20251234"
+              todas:
+                media: 245.8
+                desviacion_estandar: 412.3
+                rango: 2744.6
+              no_sembradas:
+                media: 180.5
+                desviacion_estandar: 285.2
+                rango: 1201.6
+              sembradas:
+                media: 311.1
+                desviacion_estandar: 537.4
+                rango: 2738.1
+
+  EvaluarCiclosBody:
+    description: Datos para evaluar el ejercicio 2 de análisis de ciclos
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/EvaluarCiclosInput'
+        examples:
+          ejemploCiclos:
+            summary: Ejemplo de evaluación de ciclos
+            value:
+              codigo_estudiante: "20251234"
+              mediana: 1312.5
+              cuartiles:
+                Q1: 1087.2
+                Q2: 1312.5
+                Q3: 1578.8
+              proporcion_sobre_2000: 8.7
+
+  EvaluarExpresionBody:
+    description: Datos para evaluar el ejercicio 3 de expresión génica
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/EvaluarExpresionInput'
+        examples:
+          ejemploExpresion:
+            summary: Ejemplo de evaluación de expresión génica
+            value:
+              codigo_estudiante: "20251234"
+              stats:
+                Alta.Dosis:
+                  desviacion_estandar: 39.8
+                  varianza: 1584.0
+                  rango: 122.0
+                Control.1:
+                  desviacion_estandar: 450.2
+                  varianza: 202680.0
+                  rango: 1467.0
+                Control.2:
+                  desviacion_estandar: 485.6
+                  varianza: 235808.0
+                  rango: 2029.9
+                Control.3:
+                  desviacion_estandar: 1012.4
+                  varianza: 1024954.0
+                  rango: 3010.2
+
+responses:
+  MaxAttemptsReached:
+    description: Número máximo de intentos alcanzado para este ejercicio
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/MaxAttemptsReached'
+
+  NotFound:
+    description: Recurso no encontrado
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/NotFound'
+
+  InternalServerError:
+    description: Error interno del servidor
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/InternalServerError'

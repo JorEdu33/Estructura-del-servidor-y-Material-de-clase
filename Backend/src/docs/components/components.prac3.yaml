@@ -1,0 +1,334 @@
+schemas:
+  Ejercicio1C1Input:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - ci_mean_95_low
+      - ci_mean_95_high
+      - ci_unilateral_99_low
+      - edge_95_low
+      - edge_95_high
+      - pred_95_low
+      - pred_95_high
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Intervalos de confianza - Ejercicio 1 C1
+          t.test(datos, conf.level = 0.95)
+      ci_mean_95_low:
+        type: number
+        format: float
+        description: Límite inferior del intervalo de confianza 95% para la media
+        example: 496.6198
+      ci_mean_95_high:
+        type: number
+        format: float
+        description: Límite superior del intervalo de confianza 95% para la media
+        example: 499.7802
+      ci_unilateral_99_low:
+        type: number
+        format: float
+        description: Límite inferior unilateral 99% para la media
+        example: 496.3019
+      edge_95_low:
+        type: number
+        format: float
+        description: Margen de error inferior 95%
+        example: 13.8444
+      edge_95_high:
+        type: number
+        format: float
+        description: Margen de error superior 95%
+        example: 36.3239
+      pred_95_low:
+        type: number
+        format: float
+        description: Límite inferior del intervalo de predicción 95%
+        example: 488.7191
+      pred_95_high:
+        type: number
+        format: float
+        description: Límite superior del intervalo de predicción 95%
+        example: 507.6809
+
+  Ejercicio2C1Input:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - ci_mean_95_low
+      - ci_mean_95_high
+      - ci_mean_99_low
+      - ci_edge_95_low
+      - ci_edge_95_high
+      - tol_95_95_low
+      - tol_95_95_high
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Intervalos de confianza y tolerancia - Ejercicio 2 C1
+      ci_mean_95_low:
+        type: number
+        format: float
+        description: Límite inferior del intervalo de confianza 95% para la media
+        example: 417.8838
+      ci_mean_95_high:
+        type: number
+        format: float
+        description: Límite superior del intervalo de confianza 95% para la media
+        example: 420.5162
+      ci_mean_99_low:
+        type: number
+        format: float
+        description: Límite inferior unilateral 99% para la media
+        example: 417.6107
+      ci_edge_95_low:
+        type: number
+        format: float
+        description: Margen de error inferior 95%
+        example: 6.1985
+      ci_edge_95_high:
+        type: number
+        format: float
+        description: Margen de error superior 95%
+        example: 19.6756
+      tol_95_95_low:
+        type: number
+        format: float
+        description: Límite inferior del intervalo de tolerancia 95/95
+        example: 410.8110
+      tol_95_95_high:
+        type: number
+        format: float
+        description: Límite superior del intervalo de tolerancia 95/95
+        example: 427.5890
+
+  Ejercicio1F3Input:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - IC95_low_sigma
+      - IC95_high_sigma
+      - LS99_sigma
+      - IC95_low_t
+      - IC95_high_t
+      - tol95_90_low
+      - tol95_90_high
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Intervalos para desviación estándar - Ejercicio 1 F3
+      IC95_low_sigma:
+        type: number
+        format: float
+        description: Límite inferior IC 95% para sigma (distribución chi-cuadrado)
+        example: 67.6738
+      IC95_high_sigma:
+        type: number
+        format: float
+        description: Límite superior IC 95% para sigma (distribución chi-cuadrado)
+        example: 74.3262
+      LS99_sigma:
+        type: number
+        format: float
+        description: Límite superior unilateral 99% para sigma
+        example: 74.9479
+      IC95_low_t:
+        type: number
+        format: float
+        description: Límite inferior IC 95% usando aproximación t
+        example: 67.5896
+      IC95_high_t:
+        type: number
+        format: float
+        description: Límite superior IC 95% usando aproximación t
+        example: 74.4104
+      tol95_90_low:
+        type: number
+        format: float
+        description: Límite inferior intervalo tolerancia 95/90
+        example: 47.0480
+      tol95_90_high:
+        type: number
+        format: float
+        description: Límite superior intervalo tolerancia 95/90
+        example: 94.9520
+
+  Ejercicio2F3Input:
+    type: object
+    required:
+      - codigo_estudiante
+      - codigo_funcion
+      - t95
+      - ci_mean_low
+      - ci_mean_high
+      - chi2_low
+      - chi2_high
+      - edge_low
+      - edge_high
+      - t99
+      - pred_margin_99
+      - pred_low
+      - pred_high
+      - tol_low
+      - tol_high
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante
+        pattern: '^[0-9]+$'
+        example: "20251234"
+      codigo_funcion:
+        type: string
+        description: Código R/Python implementado por el estudiante
+        example: |
+          # Múltiples intervalos - Ejercicio 2 F3
+      t95:
+        type: number
+        format: float
+        description: Valor crítico t para 95% de confianza
+        example: 2.0930
+      ci_mean_low:
+        type: number
+        format: float
+        description: Límite inferior IC 95% para la media
+        example: 63.0300
+      ci_mean_high:
+        type: number
+        format: float
+        description: Límite superior IC 95% para la media
+        example: 65.7700
+      chi2_low:
+        type: number
+        format: float
+        description: Valor crítico chi-cuadrado inferior
+        example: 8.9065
+      chi2_high:
+        type: number
+        format: float
+        description: Valor crítico chi-cuadrado superior
+        example: 32.8523
+      edge_low:
+        type: number
+        format: float
+        description: Margen de error inferior
+        example: 4.9555
+      edge_high:
+        type: number
+        format: float
+        description: Margen de error superior
+        example: 18.2788
+      t99:
+        type: number
+        format: float
+        description: Valor crítico t para 99% de confianza
+        example: 2.8609
+      pred_margin_99:
+        type: number
+        format: float
+        description: Margen de predicción 99%
+        example: 8.5813
+      pred_low:
+        type: number
+        format: float
+        description: Límite inferior intervalo predicción 99%
+        example: 55.8187
+      pred_high:
+        type: number
+        format: float
+        description: Límite superior intervalo predicción 99%
+        example: 72.9813
+      tol_low:
+        type: number
+        format: float
+        description: Límite inferior intervalo tolerancia
+        example: 57.6382
+      tol_high:
+        type: number
+        format: float
+        description: Límite superior intervalo tolerancia
+        example: 71.1618
+
+  EvaluacionPrac3Response:
+    type: object
+    required:
+      - mensaje
+      - aciertos
+      - fallos
+      - esperado
+    properties:
+      mensaje:
+        type: string
+        description: Mensaje con la nota obtenida
+        example: "Nota: 5.0"
+      aciertos:
+        type: integer
+        description: Número de parámetros correctos
+        example: 7
+      fallos:
+        type: array
+        items:
+          type: string
+        description: Lista de parámetros incorrectos
+        example: ["ci_mean_95_high", "edge_95_low"]
+      esperado:
+        type: object
+        description: Valores esperados para referencia
+        additionalProperties:
+          type: number
+
+requestBodies:
+  Ejercicio1C1Body:
+    description: Datos para evaluar el Ejercicio 1 - C1 (Intervalos de confianza)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Ejercicio1C1Input'
+
+  Ejercicio2C1Body:
+    description: Datos para evaluar el Ejercicio 2 - C1 (Intervalos de confianza y tolerancia)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Ejercicio2C1Input'
+
+  Ejercicio1F3Body:
+    description: Datos para evaluar el Ejercicio 1 - F3 (Intervalos para desviación estándar)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Ejercicio1F3Input'
+
+  Ejercicio2F3Body:
+    description: Datos para evaluar el Ejercicio 2 - F3 (Múltiples intervalos)
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Ejercicio2F3Input'

@@ -1,0 +1,125 @@
+tags:
+  - name: Frontend
+    description: Endpoints para la consulta de información desde el frontend (grupos, semanas, detalles e intentos).
+
+paths:
+  /api/grupos:
+    get:
+      summary: Obtener lista de grupos
+      description: |
+        Devuelve un arreglo con los nombres de todos los grupos registrados en el sistema.
+        
+        **Nota:** Solo incluye grupos que no sean nulos ni vacíos, ordenados alfabéticamente.
+      tags: [Frontend]
+      operationId: getGrupos
+      responses:
+        200:
+          description: Lista de grupos obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                example: ["A1", "B2", "C3"]
+        500:
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/semanas/{grupo}:
+    get:
+      summary: Obtener resumen de semanas por grupo
+      description: |
+        Devuelve un objeto donde cada clave es una semana (número) y el valor es un arreglo de estudiantes 
+        con sus mejores notas por ejercicio en esa semana.
+        
+        **Agrupación:** Los datos se agrupan por estudiante, ejercicio y semana.
+      tags: [Frontend]
+      operationId: getSemanasPorGrupo
+      parameters:
+        - $ref: '#/components/parameters/GrupoParameter'
+      responses:
+        200:
+          description: Resumen semanal obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ResumenSemanal'
+              example:
+                36:
+                  - codigo_estudiante: "20251234"
+                    nombre_estudiante: "Jorge Suárez"
+                    grupo: "A1"
+                    ejercicio: "Ejercicio 3 - Regresión Lineal"
+                    mejor_nota: 4.5
+                  - codigo_estudiante: "20251235"
+                    nombre_estudiante: "María López"
+                    grupo: "A1"
+                    ejercicio: "Ejercicio 1 - Análisis Descriptivo"
+                    mejor_nota: 5.0
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/detalle/{semana}/{codigo_estudiante}:
+    get:
+      summary: Obtener detalles de intentos por semana y código de estudiante
+      description: |
+        Devuelve la lista completa de intentos realizados por un estudiante específico 
+        en una semana determinada, ordenados cronológicamente.
+        
+        **Incluye por cada intento:**
+        - Ejercicio realizado
+        - Nota obtenida
+        - Código/solución enviada por el estudiante
+        - Fecha y hora del intento
+        
+        **Nota:** El campo `codigo` contiene la solución enviada por el estudiante, 
+        no su identificador.
+      tags: [Frontend]
+      operationId: getDetallePorSemanaYCodigo
+      parameters:
+        - $ref: '#/components/parameters/SemanaParameter'
+        - $ref: '#/components/parameters/CodigoEstudianteParameter'
+      responses:
+        200:
+          description: Lista de intentos obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DetalleIntento'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/detalle/{id}:
+    delete:
+      summary: Eliminar intento por ID
+      description: |
+        Elimina permanentemente un intento específico (registro en la tabla ejercicios) 
+        identificado por su ID único.
+        
+        **Advertencia:** Esta operación eliminará tanto el registro del intento 
+        como la solución/código enviado por el estudiante. No se puede deshacer.
+      tags: [Frontend]
+      operationId: deleteDetalleById
+      parameters:
+        - $ref: '#/components/parameters/IdIntentoParameter'
+      responses:
+        200:
+          description: Intento y solución asociada eliminados correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'

@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const swaggerDocs = require('../swagger');
 const frontRoutes = require('./routes/front.routes');
 const studentsRoutes = require('./routes/students.routes');
 const quizzesRoutes = require('./routes/quizzes.routes');
@@ -21,5 +22,6 @@ app.use('/', studentsRoutes);
 app.use('/api/pract', quizzesRoutes);
 
 app.use(errorHandler);
+swaggerDocs(app);
 
 module.exports = app;

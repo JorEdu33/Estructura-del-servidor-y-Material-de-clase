@@ -14,7 +14,7 @@ exports.evaluarVarianzas = async (req, res, next) => {
   
       const [intentos] = await pool.execute(
         "SELECT COUNT(*) AS num_intentos FROM ejercicios WHERE codigo_estudiante = ? AND nombre_ejercicio = ?",
-        [codigo_estudiante, "Prueba de Varianzas"]
+        [codigo_estudiante, "Ejercicio 1 - Práctica 2"]
       );
       if (intentos[0].num_intentos >= 2) {
         return res.status(403).json({ error: "Número máximo de intentos alcanzado" });
@@ -66,7 +66,7 @@ exports.evaluarVarianzas = async (req, res, next) => {
   
       await pool.execute(
         "INSERT INTO ejercicios (codigo_estudiante, nombre_ejercicio, nota, codigo) VALUES (?, ?, ?, ?)",
-        [codigo_estudiante, "Prueba de Varianzas", nota, codigo_funcion]
+        [codigo_estudiante, "Ejercicio 1 - Práctica 2", nota, codigo_funcion]
       );
   
       res.json({ mensaje: `Nota: ${nota}`, fallos, esperado });
@@ -93,7 +93,7 @@ exports.evaluarVarianzas = async (req, res, next) => {
   
       const [intentos] = await pool.execute(
         "SELECT COUNT(*) AS num_intentos FROM ejercicios WHERE codigo_estudiante = ? AND nombre_ejercicio = ?",
-        [codigo_estudiante, "Prueba t una muestra"]
+        [codigo_estudiante, "Ejercicio 2 - Práctica 2"]
       );
       if (intentos[0].num_intentos >= 2) {
         return res.status(403).json({ error: "Número máximo de intentos alcanzado" });
@@ -133,7 +133,7 @@ exports.evaluarVarianzas = async (req, res, next) => {
   
       await pool.execute(
         "INSERT INTO ejercicios (codigo_estudiante, nombre_ejercicio, nota, codigo) VALUES (?, ?, ?, ?)",
-        [codigo_estudiante, "Prueba t una muestra", nota, codigo_funcion]
+        [codigo_estudiante, "Ejercicio 2 - Práctica 2", nota, codigo_funcion]
       );
   
       res.json({ mensaje: `Nota: ${nota}`, fallos, esperado });

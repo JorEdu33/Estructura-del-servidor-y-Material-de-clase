@@ -1,0 +1,47 @@
+tags:
+  - name: Estudiantes
+    description: Endpoints para la gestión de estudiantes en el sistema.
+
+paths:
+  /registrar-estudiante:
+    post:
+      summary: Registrar un nuevo estudiante
+      description: |
+        Registra un nuevo estudiante en el sistema. 
+        
+        **Validaciones:**
+        - Todos los campos son obligatorios
+        - El código de estudiante debe ser único
+        - Si el estudiante ya existe, retorna un mensaje informativo
+        
+        **Flujo:**
+        1. Verifica que todos los campos estén presentes
+        2. Consulta si el código de estudiante ya existe
+        3. Si no existe, registra al nuevo estudiante
+      tags: [Estudiantes]
+      operationId: registrarEstudiante
+      requestBody:
+        $ref: '#/components/requestBodies/EstudianteRegistration'
+      responses:
+        200:
+          description: Estudiante registrado correctamente o ya existía
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/EstudianteRegistradoResponse'
+                  - $ref: '#/components/schemas/EstudianteExistenteResponse'
+              examples:
+                registradoExitoso:
+                  summary: Estudiante registrado exitosamente
+                  value:
+                    success: true
+                    mensaje: "Estudiante registrado correctamente"
+                yaRegistrado:
+                  summary: Estudiante ya existente
+                  value:
+                    mensaje: "Estudiante ya registrado"
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'

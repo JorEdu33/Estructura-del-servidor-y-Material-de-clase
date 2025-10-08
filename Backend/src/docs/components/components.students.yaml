@@ -1,0 +1,137 @@
+schemas:
+  EstudianteInput:
+    type: object
+    required:
+      - codigo_estudiante
+      - nombre_estudiante
+      - grupo
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único identificador del estudiante (numérico)
+        pattern: '^[0-9]+$'
+        minLength: 8
+        maxLength: 20
+        example: "20251234"
+      nombre_estudiante:
+        type: string
+        description: Nombre completo del estudiante
+        minLength: 3
+        maxLength: 100
+        example: "Ana García López"
+      grupo:
+        type: string
+        description: Código del grupo académico al que pertenece el estudiante
+        minLength: 2
+        maxLength: 10
+        example: "A1"
+    example:
+      codigo_estudiante: "20251234"
+      nombre_estudiante: "Ana García López"
+      grupo: "A1"
+
+  EstudianteRegistradoResponse:
+    type: object
+    required:
+      - success
+      - mensaje
+    properties:
+      success:
+        type: boolean
+        description: Indica si el registro fue exitoso
+        example: true
+      mensaje:
+        type: string
+        description: Mensaje de confirmación del registro
+        example: "Estudiante registrado correctamente"
+
+  EstudianteExistenteResponse:
+    type: object
+    required:
+      - mensaje
+    properties:
+      mensaje:
+        type: string
+        description: Mensaje informativo indicando que el estudiante ya estaba registrado
+        example: "Estudiante ya registrado"
+
+  ErrorResponse:
+    type: object
+    required:
+      - error
+    properties:
+      error:
+        type: string
+        description: Tipo de error ocurrido
+        example: "Error de validación"
+      details:
+        type: string
+        description: Detalles específicos del error
+        example: "El código de estudiante debe contener solo números"
+      timestamp:
+        type: string
+        format: date-time
+        description: Fecha y hora en que ocurrió el error
+        example: "2024-01-15T10:30:00Z"
+
+responses:
+  BadRequest:
+    description: Solicitud incorrecta - datos faltantes o inválidos
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ErrorResponse'
+        examples:
+          datosFaltantes:
+            summary: Datos requeridos faltantes
+            value:
+              error: "Faltan datos"
+              details: "Todos los campos (codigo_estudiante, nombre_estudiante, grupo) son obligatorios"
+          formatoInvalido:
+            summary: Formato de datos inválido
+            value:
+              error: "Formato inválido"
+              details: "El código de estudiante debe contener solo números"
+
+  MaxAttemptsReached:
+    description: Número máximo de intentos alcanzado para este ejercicio
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ErrorResponse'
+        examples:
+          maxIntentos:
+            summary: Máximo de intentos alcanzado
+            value:
+              error: "Número máximo de intentos alcanzado"
+              details: "Solo se permiten 2 intentos por ejercicio"
+
+  InternalServerError:
+    description: Error interno del servidor
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ErrorResponse'
+        examples:
+          errorServidor:
+            summary: Error interno del servidor
+            value:
+              error: "Error interno del servidor"
+              details: "Ha ocurrido un error inesperado"
+              timestamp: "2024-01-15T10:30:00Z"
+
+requestBodies:
+  EstudianteRegistration:
+    description: Datos requeridos para registrar un estudiante
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/EstudianteInput'
+        examples:
+          estudianteEjemplo:
+            summary: Ejemplo de registro de estudiante
+            value:
+              codigo_estudiante: "20251234"
+              nombre_estudiante: "Ana García López"
+              grupo: "A1"
