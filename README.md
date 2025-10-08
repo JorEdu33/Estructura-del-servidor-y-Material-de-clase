@@ -17,7 +17,7 @@ cd Estructura-del-servidor-y-Material-de-clase
 ---
 ## 🧠 Descripción General
 
-Este proyecto implementa un **ambiente de aprendizaje digital** para apoyar la enseñanza de la asignatura **Estadística II**, combinando:
+Este proyecto implementa un **ambiente de aprendizaje virtual** para apoyar la enseñanza de la asignatura **Estadística II**, combinando:
 
 - 📚 **Material teórico** estructurado por semanas y temas.  
 - 🧪 **Prácticas interactivas** desarrolladas en Google Colab o notebooks equivalentes.  
