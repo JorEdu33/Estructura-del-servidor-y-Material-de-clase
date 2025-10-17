@@ -114,6 +114,66 @@ schemas:
         description: Fecha y hora en que ocurrió el error
         example: "2024-01-15T10:30:00Z"
 
+  AsignarCerosRequest:
+    type: object
+    required:
+      - semana
+      - grupo
+    properties:
+      semana:
+        type: integer
+        minimum: 1
+        maximum: 53
+        description: Número de semana según estándar ISO 8601
+        example: 36
+      grupo:
+        type: string
+        description: Código del grupo académico
+        example: "A1"
+
+  AsignarCerosResponse:
+    type: object
+    required:
+      - message
+      - fecha_usada
+      - resumen
+    properties:
+      message:
+        type: string
+        description: Mensaje descriptivo del resultado de la operación
+        example: "✅ Se asignaron ceros a los ejercicios faltantes de la semana 36 en el grupo A1."
+      fecha_usada:
+        type: string
+        format: date-time
+        description: Fecha de inicio de semana utilizada para la asignación de ceros
+        example: "2025-09-01T00:00:00.000Z"
+      resumen:
+        type: array
+        description: Resumen de estudiantes que recibieron ceros y en qué ejercicios
+        items:
+          type: object
+          properties:
+            codigo_estudiante:
+              type: string
+              description: Código del estudiante que recibió ceros
+              example: "20251234"
+            ejercicios_faltantes:
+              type: array
+              description: Lista de ejercicios a los que se asignó cero
+              items:
+                type: string
+                example: "Ejercicio 3 - Regresión Lineal"
+
+  ValidationError:
+    type: object
+    required:
+      - error
+    properties:
+      error:
+        type: string
+        description: Tipo de error de validación
+        example: "Faltan datos: semana o grupo"
+
 responses:
   NotFound:
     description: Recurso no encontrado
@@ -145,6 +205,18 @@ responses:
             value:
               error: "Error interno del servidor"
               details: "Ha ocurrido un error inesperado en el servidor"
+
+  ValidationError:
+    description: Error de validación en los datos de entrada
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ValidationError'
+        examples:
+          datosFaltantes:
+            summary: Datos requeridos faltantes
+            value:
+              error: "Faltan datos: semana o grupo"
 
 parameters:
   GrupoParameter:

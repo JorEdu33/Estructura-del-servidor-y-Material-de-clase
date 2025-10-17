@@ -123,3 +123,70 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+
+  /api/asignar-ceros:
+    post:
+      summary: Asignar ceros a ejercicios faltantes
+      description: |
+        Asigna calificación de cero (0) a todos los ejercicios de la semana que los estudiantes 
+        de un grupo no hayan realizado.
+        
+        **Funcionamiento:**
+        1. Obtiene todos los estudiantes del grupo especificado
+        2. Identifica los ejercicios registrados en esa semana para el grupo
+        3. Para cada estudiante, detecta los ejercicios que no haya realizado
+        4. Inserta registros con nota 0 para los ejercicios faltantes
+        
+        **Nota:** Utiliza la fecha de inicio de la semana (lunes) como timestamp para los registros insertados.
+      tags: [Frontend]
+      operationId: asignarCeros
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AsignarCerosRequest'
+            example:
+              semana: 36
+              grupo: "A1"
+      responses:
+        200:
+          description: Ceros asignados exitosamente a los ejercicios faltantes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsignarCerosResponse'
+              example:
+                message: "✅ Se asignaron ceros a los ejercicios faltantes de la semana 36 en el grupo A1."
+                fecha_usada: "2025-09-01T00:00:00.000Z"
+                resumen:
+                  - codigo_estudiante: "20251234"
+                    ejercicios_faltantes: 
+                      - "Ejercicio 3 - Regresión Lineal"
+                      - "Ejercicio 4 - ANOVA"
+                  - codigo_estudiante: "20251235"
+                    ejercicios_faltantes:
+                      - "Ejercicio 3 - Regresión Lineal"
+        400:
+          $ref: '#/components/responses/ValidationError'
+        404:
+          description: Recurso no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "No hay estudiantes en el grupo A1."
+              examples:
+                sinEstudiantes:
+                  summary: Grupo sin estudiantes
+                  value:
+                    message: "No hay estudiantes en el grupo A1."
+                sinEjercicios:
+                  summary: Sin ejercicios registrados
+                  value:
+                    message: "No hay ejercicios registrados en la semana 36 para el grupo A1."
+        500:
+          $ref: '#/components/responses/InternalServerError'

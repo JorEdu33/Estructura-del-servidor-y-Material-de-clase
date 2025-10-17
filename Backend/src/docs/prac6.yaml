@@ -1,0 +1,194 @@
+paths:
+  /api/pract/ejer1-prac6-C1:
+    post:
+      tags:
+        - Práctica 6
+      summary: "Ejercicio 1 - Práctica 6 - C1 - Prueba t para una muestra"
+      description: |
+        Ejercicio de prueba de hipótesis t para una muestra que evalúa:
+        - Estadístico t
+        - Valores críticos
+        - Decisión de hipótesis
+        - Intervalo de confianza
+        - Potencia y error tipo II
+        - Tamaño de efecto (d de Cohen)
+        - Tamaño de muestra aproximado
+        
+        **Máximo de intentos:** 1
+      operationId: ejer1_prac6_C1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Prac6Ejercicio1C1Request'
+        required: true
+      responses:
+        '200':
+          description: Ejercicio evaluado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prac6Response'
+        '403':
+          description: Número máximo de intentos alcanzado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Estudiante no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/pract/ejer2-prac6-C1:
+    post:
+      tags:
+        - Práctica 6
+      summary: "Ejercicio 2 - Práctica 6 - C1 - Prueba z para una muestra"
+      description: |
+        Ejercicio de prueba de hipótesis z para una muestra que evalúa:
+        - Estadístico z
+        - Valores críticos
+        - Decisión de hipótesis
+        - Intervalo de confianza
+        - Potencia y error tipo II
+        - Tamaño de muestra aproximado
+        
+        **Máximo de intentos:** 1
+      operationId: ejer2_prac6_C1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Prac6Ejercicio2C1Request'
+        required: true
+      responses:
+        '200':
+          description: Ejercicio evaluado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prac6Response'
+        '403':
+          description: Número máximo de intentos alcanzado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Estudiante no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/pract/ejer1-prac6-F3:
+    post:
+      tags:
+        - Práctica 6
+      summary: "Ejercicio 1 - Práctica 6 - F3 - Prueba z para una proporción"
+      description: |
+        Ejercicio de prueba de hipótesis z para una proporción que evalúa:
+        - Estadístico z
+        - Valores críticos
+        - Decisión de hipótesis
+        - Intervalo de confianza
+        - Potencia y error tipo II
+        - Tamaño de muestra aproximado
+        
+        **Máximo de intentos:** 1
+      operationId: ejer1_prac6_F3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Prac6Ejercicio1F3Request'
+        required: true
+      responses:
+        '200':
+          description: Ejercicio evaluado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prac6Response'
+        '403':
+          description: Número máximo de intentos alcanzado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Estudiante no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/pract/ejer2-prac6-F3:
+    post:
+      tags:
+        - Práctica 6
+      summary: "Ejercicio 2 - Práctica 6 - F3 - Prueba t para una muestra"
+      description: |
+        Ejercicio de prueba de hipótesis t para una muestra que evalúa:
+        - Estadístico t
+        - Valores críticos
+        - Decisión de hipótesis
+        - Intervalo de confianza
+        - Potencia y error tipo II
+        - Tamaño de efecto (d de Cohen)
+        - Tamaño de muestra aproximado
+        
+        **Máximo de intentos:** 1
+      operationId: ejer2_prac6_F3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Prac6Ejercicio2F3Request'
+        required: true
+      responses:
+        '200':
+          description: Ejercicio evaluado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prac6Response'
+        '403':
+          description: Número máximo de intentos alcanzado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Estudiante no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'

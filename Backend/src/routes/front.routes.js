@@ -6,5 +6,6 @@ router.get('/grupos', controller.getGrupos);
 router.get('/semanas/:grupo', controller.getSemanasPorGrupo);
 router.get('/detalle/:semana/:codigo', controller.getDetallePorSemanaYCodigo);
 router.delete('/detalle/:id', controller.deleteDetalleById);
+router.post('/asignar-ceros', controller.asignarCeros);
 
 module.exports = router;

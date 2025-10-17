@@ -1,0 +1,380 @@
+schemas:
+  Prac6Ejercicio1C1Request:
+    type: object
+    required:
+      - codigo_estudiante
+      - estadistico_t
+      - valor_critico_inferior
+      - valor_critico_superior
+      - decision
+      - p_valor
+      - limite_inferior_ic
+      - limite_superior_ic
+      - potencia
+      - error_tipo_II
+      - d
+      - tamano_muestra_aprox
+      - codigo_funcion
+    properties:
+      codigo_estudiante:
+        type: string
+        description: Código único del estudiante
+        example: "202100123"
+      estadistico_t:
+        type: number
+        format: float
+        description: Valor del estadístico t calculado
+        example: 2.5575488870470826
+      valor_critico_inferior:
+        type: number
+        format: float
+        description: Valor crítico inferior de la distribución t
+        example: -2.10092204024096
+      valor_critico_superior:
+        type: number
+        format: float
+        description: Valor crítico superior de la distribución t
+        example: 2.10092204024096
+      decision:
+        type: string
+        description: Decisión de la prueba de hipótesis
+        enum: [Reject, Fail to Reject]
+        example: "Reject"
+      p_valor:
+        type: number
+        format: float
+        description: Valor p de la prueba
+        example: 0.01978488726347316
+      limite_inferior_ic:
+        type: number
+        format: float
+        description: Límite inferior del intervalo de confianza
+        example: 1.856824
+      limite_superior_ic:
+        type: number
+        format: float
+        description: Límite superior del intervalo de confianza
+        example: 18.943176
+      potencia:
+        type: number
+        format: float
+        description: Potencia de la prueba estadística
+        example: 0.09999999999999998
+      error_tipo_II:
+        type: number
+        format: float
+        description: Probabilidad de error tipo II
+        example: 0.9
+      d:
+        type: number
+        format: float
+        description: Tamaño del efecto (d de Cohen)
+        example: 0.27494486380847216
+      tamano_muestra_aprox:
+        type: number
+        format: float
+        description: Tamaño de muestra aproximado para la prueba
+        example: 51.0
+      codigo_funcion:
+        type: string
+        description: Código de la función implementada por el estudiante
+        example: "function pruebaTUnaMuestra() { ... }"
+
+  Prac6Ejercicio2C1Request:
+    type: object
+    required:
+      - codigo_estudiante
+      - estadistico_z
+      - valor_critico_inferior
+      - valor_critico_superior
+      - decision
+      - p_valor
+      - limite_inferior_ic
+      - limite_superior_ic
+      - error_tipo_II
+      - potencia
+      - tamano_muestra_aprox
+      - codigo_funcion
+    properties:
+      codigo_estudiante:
+        type: string
+        example: "202100123"
+      estadistico_z:
+        type: number
+        format: float
+        example: 4.216370213557839
+      valor_critico_inferior:
+        type: number
+        format: float
+        example: -1.9599639845400545
+      valor_critico_superior:
+        type: number
+        format: float
+        example: 1.959963984540054
+      decision:
+        type: string
+        enum: [Reject, Fail to Reject]
+        example: "Reject"
+      p_valor:
+        type: number
+        format: float
+        example: 2.482660633873479e-05
+      limite_inferior_ic:
+        type: number
+        format: float
+        example: 2.1406149030863153
+      limite_superior_ic:
+        type: number
+        format: float
+        example: 5.859385096913685
+      error_tipo_II:
+        type: number
+        format: float
+        example: 0.11462085923764874
+      potencia:
+        type: number
+        format: float
+        example: 0.8853791407623512
+      tamano_muestra_aprox:
+        type: number
+        format: float
+        example: 22.0
+      codigo_funcion:
+        type: string
+        example: "function pruebaZUnaMuestra() { ... }"
+
+  Prac6Ejercicio1F3Request:
+    type: object
+    required:
+      - codigo_estudiante
+      - estadistico_z
+      - valor_critico_inferior
+      - valor_critico_superior
+      - decision
+      - p_valor
+      - limite_inferior_ic
+      - limite_superior_ic
+      - error_tipo_II
+      - potencia
+      - tamano_muestra_aprox
+      - codigo_funcion
+    properties:
+      codigo_estudiante:
+        type: string
+        example: "202100123"
+      estadistico_z:
+        type: number
+        format: float
+        example: 5.365365653371402
+      valor_critico_inferior:
+        type: number
+        format: float
+        example: -1.9599639845400545
+      valor_critico_superior:
+        type: number
+        format: float
+        example: 1.959963984540054
+      decision:
+        type: string
+        enum: [Reject, Fail to Reject]
+        example: "Reject"
+      p_valor:
+        type: number
+        format: float
+        example: 8.078539215361502e-08
+      limite_inferior_ic:
+        type: number
+        format: float
+        example: 1.0155212192679595
+      limite_superior_ic:
+        type: number
+        format: float
+        example: 2.1844787807320416
+      error_tipo_II:
+        type: number
+        format: float
+        example: 0.08175095837555224
+      potencia:
+        type: number
+        format: float
+        example: 0.9182490416244478
+      tamano_muestra_aprox:
+        type: number
+        format: float
+        example: 35.0
+      codigo_funcion:
+        type: string
+        example: "function pruebaZProporcion() { ... }"
+
+  Prac6Ejercicio2F3Request:
+    type: object
+    required:
+      - codigo_estudiante
+      - estadistico_t
+      - valor_critico_inferior
+      - valor_critico_superior
+      - decision
+      - p_valor
+      - limite_inferior_ic
+      - limite_superior_ic
+      - potencia
+      - error_tipo_II
+      - d
+      - tamano_muestra_aprox
+      - codigo_funcion
+    properties:
+      codigo_estudiante:
+        type: string
+        example: "202100123"
+      estadistico_t:
+        type: number
+        format: float
+        example: 2.0967955847287376
+      valor_critico_inferior:
+        type: number
+        format: float
+        example: -2.048407141795244
+      valor_critico_superior:
+        type: number
+        format: float
+        example: 2.048407141795244
+      decision:
+        type: string
+        enum: [Reject, Fail to Reject]
+        example: "Reject"
+      p_valor:
+        type: number
+        format: float
+        example: 0.04516805940481938
+      limite_inferior_ic:
+        type: number
+        format: float
+        example: 0.039231
+      limite_superior_ic:
+        type: number
+        format: float
+        example: 3.360769
+      potencia:
+        type: number
+        format: float
+        example: 0.4
+      error_tipo_II:
+        type: number
+        format: float
+        example: 0.6
+      d:
+        type: number
+        format: float
+        example: 0.45037734911104504
+      tamano_muestra_aprox:
+        type: number
+        format: float
+        example: 26.0
+      codigo_funcion:
+        type: string
+        example: "function pruebaTUnaMuestra() { ... }"
+
+  Prac6Response:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        description: Mensaje de resultado con la nota obtenida
+        example: "Nota: 4.5"
+      aciertos:
+        type: integer
+        description: Número de ítems correctos
+        example: 9
+      fallos:
+        type: array
+        items:
+          type: string
+        description: Lista de campos que no coincidieron con los valores esperados
+        example: ["estadistico_t", "p_valor"]
+      esperado:
+        type: object
+        description: Valores esperados para cada campo del ejercicio
+        properties:
+          estadistico_t:
+            type: number
+            format: float
+          estadistico_z:
+            type: number
+            format: float
+          valor_critico_inferior:
+            type: number
+            format: float
+          valor_critico_superior:
+            type: number
+            format: float
+          decision:
+            type: string
+          p_valor:
+            type: number
+            format: float
+          limite_inferior_ic:
+            type: number
+            format: float
+          limite_superior_ic:
+            type: number
+            format: float
+          potencia:
+            type: number
+            format: float
+          error_tipo_II:
+            type: number
+            format: float
+          d:
+            type: number
+            format: float
+          tamano_muestra_aprox:
+            type: number
+            format: float
+
+responses:
+  Prac6SuccessResponse:
+    description: Respuesta exitosa de evaluación de práctica 6
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Prac6Response'
+
+  Prac6MaxAttemptsResponse:
+    description: Número máximo de intentos alcanzado para el ejercicio
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ErrorResponse'
+
+requestBodies:
+  Prac6Ejercicio1C1RequestBody:
+    description: Datos para el ejercicio 1 de práctica 6 - C1
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Prac6Ejercicio1C1Request'
+    required: true
+
+  Prac6Ejercicio2C1RequestBody:
+    description: Datos para el ejercicio 2 de práctica 6 - C1
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Prac6Ejercicio2C1Request'
+    required: true
+
+  Prac6Ejercicio1F3RequestBody:
+    description: Datos para el ejercicio 1 de práctica 6 - F3
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Prac6Ejercicio1F3Request'
+    required: true
+
+  Prac6Ejercicio2F3RequestBody:
+    description: Datos para el ejercicio 2 de práctica 6 - F3
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Prac6Ejercicio2F3Request'
+    required: true

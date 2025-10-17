@@ -17,7 +17,7 @@ const swaggerDefinition = {
 - Gestión de notas y retroalimentación detallada
 
 **Módulos disponibles:**
-- Prácticas 1-5: Ejercicios y evaluaciones por módulo
+- Prácticas 1-6: Ejercicios y evaluaciones por módulo
 - Frontend: Endpoints para interfaz web
 `
   },
@@ -40,6 +40,7 @@ const prac2Docs = YAML.load(path.join(__dirname, './prac2.yaml'));
 const prac3Docs = YAML.load(path.join(__dirname, './prac3.yaml'));
 const prac4Docs = YAML.load(path.join(__dirname, './prac4.yaml'));
 const prac5Docs = YAML.load(path.join(__dirname, './prac5.yaml'));
+const prac6Docs = YAML.load(path.join(__dirname, './prac6.yaml')); // NUEVO
 const frontDocs = YAML.load(path.join(__dirname, './front.yaml'));
 
 // Cargar todos los componentes individuales
@@ -49,6 +50,7 @@ const componentsPrac2 = YAML.load(path.join(__dirname, './components/components.
 const componentsPrac3 = YAML.load(path.join(__dirname, './components/components.prac3.yaml'));
 const componentsPrac4 = YAML.load(path.join(__dirname, './components/components.prac4.yaml'));
 const componentsPrac5 = YAML.load(path.join(__dirname, './components/components.prac5.yaml'));
+const componentsPrac6 = YAML.load(path.join(__dirname, './components/components.prac6.yaml')); // NUEVO
 const componentsFront = YAML.load(path.join(__dirname, './components/components.front.yaml'));
 
 // Combinar todos los componentes
@@ -60,6 +62,7 @@ const allComponents = {
     ...componentsPrac3.schemas,
     ...componentsPrac4.schemas,
     ...componentsPrac5.schemas,
+    ...componentsPrac6.schemas, // NUEVO
     ...componentsFront.schemas
   },
   responses: {
@@ -69,6 +72,7 @@ const allComponents = {
     ...componentsPrac3.responses,
     ...componentsPrac4.responses,
     ...componentsPrac5.responses,
+    ...componentsPrac6.responses, // NUEVO
     ...componentsFront.responses
   },
   parameters: {
@@ -78,6 +82,7 @@ const allComponents = {
     ...componentsPrac3.parameters,
     ...componentsPrac4.parameters,
     ...componentsPrac5.parameters,
+    ...componentsPrac6.parameters, // NUEVO
     ...componentsFront.parameters
   },
   requestBodies: {
@@ -87,6 +92,7 @@ const allComponents = {
     ...componentsPrac3.requestBodies,
     ...componentsPrac4.requestBodies,
     ...componentsPrac5.requestBodies,
+    ...componentsPrac6.requestBodies, // NUEVO
     ...componentsFront.requestBodies
   }
 };
@@ -102,6 +108,7 @@ const fullSpec = {
     ...prac3Docs.paths,
     ...prac4Docs.paths,
     ...prac5Docs.paths,
+    ...prac6Docs.paths, // NUEVO
     ...frontDocs.paths,
   }
 };
